@@ -5,10 +5,12 @@ import { authOptions } from "./auth/[...nextauth]"
 
 const nextApiHandler: NextApiHandler = async (req, res) => {
   const session = await getServerSession(req, res, authOptions)
-  const isAuthorized =
-    process.env.TINA_PUBLIC_IS_LOCAL === "true" ||
-    session?.user?.name ||
-    false;
+  const isAuthorized = true;
+
+  // const isAuthorized =
+  //   process.env.TINA_PUBLIC_IS_LOCAL === "true" ||
+  //   session?.user?.name ||
+  //   false;
 
   if (isAuthorized) {
     const { query, variables } = req.body;
